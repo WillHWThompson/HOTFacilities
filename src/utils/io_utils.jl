@@ -9,6 +9,17 @@ IO Methods
 --------------
 """
 
+"""
+load_pop_data: imports a csv file with simulated population into a file
+"""
+function load_pop_data(pop_path)
+    df = DataFrame(CSV.File(pop_path))
+    df_transformed = transform(df,[:lat,:lon] => ByRow((x,y)->Point2(y,x)))
+    pop_vec = df_transformed.lat_lon_function
+    static_pop_vec = SVector{length(pop_vec)}(pop_vec)
+
+end
+
 function csv_to_genome(csv_genome_file)
     df = DataFrame(CSV.File(csv_genome_file))
     fac_points = [] #Vector{Tuple{Float64,Float64}
