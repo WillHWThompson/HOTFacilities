@@ -1,8 +1,6 @@
 #imports
 using StatsBase
 import Base.Threads.@threads
-include("genome.jl")
-const RAND_INTERVAL = 0.001
 
 #setup
 rng = Random.MersenneTwister() #unseeded
